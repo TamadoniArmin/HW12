@@ -150,3 +150,4 @@ C:\Users\Tamadoni\OneDrive\Desktop\برنامه نویسی\تکالیف\HW - wee
 C:\Users\Tamadoni\OneDrive\Desktop\برنامه نویسی\تکالیف\HW - week 12\HW12\HW12\obj\Debug\net8.0\HW12.pdb
 C:\Users\Tamadoni\OneDrive\Desktop\برنامه نویسی\تکالیف\HW - week 12\HW12\HW12\obj\Debug\net8.0\HW12.genruntimeconfig.cache
 C:\Users\Tamadoni\OneDrive\Desktop\برنامه نویسی\تکالیف\HW - week 12\HW12\HW12\obj\Debug\net8.0\ref\HW12.dll
+C:\Users\Tamadoni\OneDrive\Desktop\برنامه نویسی\تکالیف\HW - week 12\HW12\HW12\obj\Debug\net8.0\HW12.sourcelink.json

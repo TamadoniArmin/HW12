@@ -1,4 +1,5 @@
-﻿using HW12.Task;
+﻿using HW12.DB;
+using HW12.Task;
 using Microsoft.EntityFrameworkCore;
 
 namespace HW12.Tools
@@ -7,7 +8,7 @@ namespace HW12.Tools
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-6RE5DJR\SQLEXPRESS;Initial Catalog=DutyManager;User Id=sa; password=arminpooma00;Integrated Security=SSPI;");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-6RE5DJR\SQLEXPRESS;Initial Catalog=DutyManager;User Id=sa; password=arminpooma00;Integrated Security=SSPI;TrustServerCertificate=True;");
 
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -15,5 +16,6 @@ namespace HW12.Tools
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Duty> Duties { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

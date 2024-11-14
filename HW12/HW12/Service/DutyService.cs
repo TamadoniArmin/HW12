@@ -35,7 +35,7 @@ namespace HW12.Service
                 Console.WriteLine($"date: {duty.Date} Priority: {duty.Priority} Status:{duty.Status}");
             }
         }
-        public void ChangeDutyInfo(int task,int Id,string? name,string? ditails,DateTime date,TaskPriorityEnum priorityEnum)
+        public void ChangeDutyInfo(int task,int Id,string? name,string? ditails,DateTime? date,TaskPriorityEnum? priorityEnum)
         {
             try
             {
