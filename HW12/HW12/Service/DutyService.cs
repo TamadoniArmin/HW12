@@ -33,12 +33,12 @@ namespace HW12.Service
             InMemoryDatabase.CheckUserLogin();
             return context.Duties.Where(x => x.UserId == userId).OrderBy(x => x.Date).ToList();
         }
-        public void ChangeDutyInfo(int task,int Id,string? name,string? ditails,DateTime? date,TaskPriorityEnum? priorityEnum)
+        public void ChangeDutyInfo(int userId, int task,int Id,string? name,string? ditails,DateTime? date,TaskPriorityEnum? priorityEnum)
         {
             InMemoryDatabase.CheckUserLogin();
             try
             {
-                var duty = context.Duties.FirstOrDefault(D => D.Id == Id);
+                var duty = context.Duties.FirstOrDefault(D => D.UserId==userId && D.Id==Id);
                 if (duty is not null)
                 {
                     switch (task)
@@ -75,10 +75,10 @@ namespace HW12.Service
             }
             
         }
-        public void RemoveDuty(int Id)
+        public void RemoveDuty(int Id, int userId)
         {
             InMemoryDatabase.CheckUserLogin();
-            var duty = context.Duties.FirstOrDefault(D => D.Id == Id);
+            var duty = context.Duties.FirstOrDefault(D => D.UserId==userId && D.Id==Id);
             if (duty is not null)
             {
                 context.Remove(duty);
@@ -89,12 +89,12 @@ namespace HW12.Service
                 throw new Exception($"Connot find item with id {Id}");
             }
         }
-        public void ChangeDutyStatus(int id,int task)
+        public void ChangeDutyStatus(int id, int task, int UserId)
         {
             InMemoryDatabase.CheckUserLogin();
             try
             {
-                var duty = context.Duties.FirstOrDefault(D => D.Id == id);
+                var duty = context.Duties.FirstOrDefault(D =>D.UserId==UserId && D.Id == id);
                 if (duty is not null)
                 {
                     switch (task)

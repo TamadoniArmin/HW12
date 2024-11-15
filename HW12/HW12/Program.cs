@@ -98,27 +98,27 @@ void Userservice()
                     case 1:
                         Console.WriteLine("Please enter the new name: ");
                         string Newname = Console.ReadLine()!;
-                        dutyService.ChangeDutyInfo(answer2, dutyid, Newname, null, null, null);
+                        dutyService.ChangeDutyInfo(InMemoryDatabase.OnlineUser.Id, answer2, dutyid, Newname, null, null, null);
                         break;
                     case 2:
                         Console.Write("Please enter new ditail:");
                         var NewDitail = Console.ReadLine();
-                        dutyService.ChangeDutyInfo(answer2, dutyid, null, NewDitail, null, null);
+                        dutyService.ChangeDutyInfo(InMemoryDatabase.OnlineUser.Id, answer2, dutyid, null, NewDitail, null, null);
                         break;
                     case 3:
                         Console.Write("Please enter the new date of your duty: ");
                         DateTime NewDate = Convert.ToDateTime(Console.ReadLine()!);
-                        dutyService.ChangeDutyInfo(answer2, dutyid, null, null, NewDate, null);
+                        dutyService.ChangeDutyInfo(InMemoryDatabase.OnlineUser.Id, answer2, dutyid, null, null, NewDate, null);
                         break;
                     case 4:
                         Console.WriteLine("Please set this duty new Priority :(1.veryimportant 2.important 3.normalimportant 4.notimportant");
                         int NewPriority = int.Parse(Console.ReadLine()!);
                         switch (NewPriority)
                         {
-                            case 1: dutyService.ChangeDutyInfo(answer2, dutyid, null, null, null, TaskPriorityEnum.VeryImportant); break;
-                            case 2: dutyService.ChangeDutyInfo(answer2, dutyid, null, null, null, TaskPriorityEnum.Important); break;
-                            case 3: dutyService.ChangeDutyInfo(answer2, dutyid, null, null, null, TaskPriorityEnum.Normalpriority); break;
-                            case 4: dutyService.ChangeDutyInfo(answer2, dutyid, null, null, null, TaskPriorityEnum.NotImportant); break;
+                            case 1: dutyService.ChangeDutyInfo(InMemoryDatabase.OnlineUser.Id, answer2, dutyid, null, null, null, TaskPriorityEnum.VeryImportant); break;
+                            case 2: dutyService.ChangeDutyInfo(InMemoryDatabase.OnlineUser.Id, answer2, dutyid, null, null, null, TaskPriorityEnum.Important); break;
+                            case 3: dutyService.ChangeDutyInfo(InMemoryDatabase.OnlineUser.Id, answer2, dutyid, null, null, null, TaskPriorityEnum.Normalpriority); break;
+                            case 4: dutyService.ChangeDutyInfo(InMemoryDatabase.OnlineUser.Id, answer2, dutyid, null, null, null, TaskPriorityEnum.NotImportant); break;
                             default:
                                 break;
                         }
@@ -130,19 +130,19 @@ void Userservice()
             case 4:
                 Console.Write("Pleas enter duty's id in order to remove it: ");
                 int RemovingId = int.Parse(Console.ReadLine()!);
-                dutyService.RemoveDuty(RemovingId);
+                dutyService.RemoveDuty(RemovingId, InMemoryDatabase.OnlineUser.Id);
                 break;
             case 5:
                 Console.Write("Please enter the duty id that you want to change it's status:");
                 int StatusChangingId = int.Parse(Console.ReadLine()!);
                 Console.Write("Please enter set new status for this duty: (1.In process 2.Done 3.Cancelled");
                 int NewStatuse = int.Parse(Console.ReadLine()!);
-                dutyService.ChangeDutyStatus(StatusChangingId, NewStatuse);
+                dutyService.ChangeDutyStatus(StatusChangingId, NewStatuse, InMemoryDatabase.OnlineUser.Id);
                 break;
             case 6:
                 Console.Write("Please entre the name of Duty: ");
                 string SearchingName = Console.ReadLine()!;
-                dutyService.SearchByName(SearchingName);
+                dutyService.SearchByName(InMemoryDatabase.OnlineUser.Id, SearchingName);
                 break;
             case 7:Logout = true;break;
             default:
