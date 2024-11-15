@@ -1,15 +1,18 @@
 ﻿using HW12;
+using HW12.DB;
+using HW12.Interface;
 using HW12.Service;
-using Microsoft.Identity.Client;
+using Microsoft.EntityFrameworkCore;
+IUserService _userService = new Userservice();
+IDutyService _dutyService = new DutyService();
 while (true)
 {
     try
     {
         Console.WriteLine("***** Wellcome *****");
-        Authentication authentication = new Authentication();
         Console.WriteLine("1.Login 2.Register");
         int LoginOrRegister = int.Parse(Console.ReadLine()!);
-        if (LoginOrRegister==1)
+        if (LoginOrRegister == 1)
         {
             Console.Clear();
             Console.WriteLine("***** Login *****");
@@ -17,15 +20,8 @@ while (true)
             var username = Console.ReadLine()!;
             Console.Write("Please enter your password:");
             var password = Console.ReadLine()!;
-            bool ResultOfLogin = authentication.Login(username, password);
-            if (!ResultOfLogin)
-            {
-                Console.WriteLine("There is no user in DB with this information!");
-            }
-            else
-            {
-                Userservice();
-            }
+            _userService.Login(username, password);
+            Userservice();
         }
         else if (LoginOrRegister==2)
         {
@@ -35,7 +31,7 @@ while (true)
             var username1 = Console.ReadLine()!;
             Console.Write("Please enter your password:");
             var password1 = Console.ReadLine()!;
-            authentication.Register(username1, password1);
+            _userService.Register(username1, password1);
             Console.WriteLine("Done. Now please login");
             break;
         }
@@ -83,15 +79,15 @@ void Userservice()
                 int pri = int.Parse(Console.ReadLine()!);
                 switch (pri)
                 {
-                    case 1: dutyService.AddDuty(name, ditaile, TaskPriorityEnum.VeryImportant, dateTime); break;
-                    case 2: dutyService.AddDuty(name, ditaile, TaskPriorityEnum.Important, dateTime); break;
-                    case 3: dutyService.AddDuty(name, ditaile, TaskPriorityEnum.Normalpriority, dateTime); break;
-                    case 4: dutyService.AddDuty(name, ditaile, TaskPriorityEnum.NotImportant, dateTime); break;
+                    case 1: dutyService.AddDuty(name, TaskPriorityEnum.VeryImportant,InMemoryDatabase.OnlineUser.Id ,dateTime); break;
+                    case 2: dutyService.AddDuty(name, TaskPriorityEnum.Important, InMemoryDatabase.OnlineUser.Id, dateTime); break;
+                    case 3: dutyService.AddDuty(name, TaskPriorityEnum.Normalpriority, InMemoryDatabase.OnlineUser.Id, dateTime); break;
+                    case 4: dutyService.AddDuty(name, TaskPriorityEnum.NotImportant, InMemoryDatabase.OnlineUser.Id, dateTime); break;
                     default:
                         break;
                 }
                 break;
-            case 2: dutyService.ShowAllDuties(); break;
+            case 2: dutyService.ShowAllDuties(InMemoryDatabase.OnlineUser.Id); break;
             case 3:
                 Console.Write("Please enter the duty's Id:");
                 int dutyid = int.Parse(Console.ReadLine()!);

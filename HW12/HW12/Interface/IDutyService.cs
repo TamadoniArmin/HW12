@@ -9,11 +9,11 @@ namespace HW12.Interface
 {
     public interface IDutyService
     {
-        public void AddDuty(string Name, string Ditails, TaskPriorityEnum taskPriorityEnum, DateTime date);
-        public void ShowAllDuties();
+        public void AddDuty(string Name, TaskPriorityEnum taskPriorityEnum, int userId, DateTime date);
+        public List<Duty> ShowAllDuties(int userId);
         public void ChangeDutyInfo(int task, int Id, string? name, string? ditails, DateTime? date, TaskPriorityEnum? priorityEnum);
         public void RemoveDuty(int Id);
         public void ChangeDutyStatus(int id, int task);
-        public Duty SearchByName(string name);
+        public List<Duty> SearchByName(int userId, string name);
     }
 }
